@@ -21,7 +21,7 @@ export function Features() {
   ]
 
   return (
-    <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 px-4 mt-6">
+    <div className="w-full hidden sm:flex max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 px-4 mt-6">
       {items.map((item, idx) => {
         const Icon = item.icon
         return (

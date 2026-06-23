@@ -7,7 +7,7 @@ import { SocialLinks } from "./social-links"
 
 export function Hero() {
   return (
-    <section className="w-full max-w-5xl mx-auto py-16 sm:py-24 px-4 flex flex-col items-center text-center gap-8 sm:gap-10 select-none">
+    <section className="w-full max-w-5xl mx-auto py-8 sm:py-24 px-4 flex flex-col items-center text-center gap-8 sm:gap-10 select-none">
       {/* 1. Launching Badge */}
       <LaunchingBadge />
 
