@@ -28,7 +28,7 @@ export function EmailForm() {
         if (error.code === "23505") {
           setStatus({
             type: "error",
-            message: "You are already on the waitlist! ✨",
+            message: "You are already on the waitlist",
           })
         } else {
           setStatus({
@@ -39,7 +39,7 @@ export function EmailForm() {
       } else {
         setStatus({
           type: "success",
-          message: "Welcome to Drova Studio! You have joined the waitlist. 🎉",
+          message: "Welcome to Drova Studio! You have joined the waitlist",
         })
         setEmail("")
       }
