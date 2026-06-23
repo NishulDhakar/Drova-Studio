@@ -6,7 +6,7 @@ import { Highlighter } from "@/components/ui/highlighter"
 import { supabase } from "@/lib/supabase"
 
 export function WaitlistProof() {
-  const [count, setCount] = React.useState(200) 
+  const [count, setCount] = React.useState(0) 
 
   React.useEffect(() => {
     async function fetchWaitlistCount() {
@@ -16,7 +16,7 @@ export function WaitlistProof() {
         const { data: dbCount, error } = await supabase.rpc("get_waitlist_count")
 
         if (!error && dbCount !== null) {
-          setCount(200 + Number(dbCount))
+          setCount(78 + Number(dbCount))
         } else if (error) {
           console.log("Supabase RPC error (falling back to default):", error.message)
         }

@@ -33,6 +33,16 @@ export function SocialLinks() {
       ),
     },
     {
+      name: "Telegram",
+      href: "https://t.me/drovastudio",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5">
+          <path d="m22 2-7 20-4-9-9-4Z" />
+          <path d="M22 2 11 13" />
+        </svg>
+      ),
+    },
+    {
       name: "Email",
       href: "mailto:drovastudioofficial@gmail.com",
       icon: <Mail className="size-5" strokeWidth={2} />,
