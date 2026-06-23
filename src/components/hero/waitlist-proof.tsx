@@ -1,8 +1,31 @@
+"use client"
+
 import * as React from "react"
 import { AvatarCircles } from "@/components/ui/avatar-circles"
 import { Highlighter } from "@/components/ui/highlighter"
+import { supabase } from "@/lib/supabase"
 
 export function WaitlistProof() {
+  const [count, setCount] = React.useState(200) // baseline starts at 200
+
+  React.useEffect(() => {
+    async function fetchWaitlistCount() {
+      try {
+        const { count: dbCount, error } = await supabase
+          .from("waitlist_users")
+          .select("*", { count: "exact", head: true })
+
+        if (!error && dbCount !== null) {
+          setCount(200 + dbCount)
+        }
+      } catch (err) {
+        console.error("Error fetching waitlist count:", err)
+      }
+    }
+
+    fetchWaitlistCount()
+  }, [])
+
   const avatarUrls = [
     { imageUrl: "/avatars/creator-1.png", profileUrl: "#" },
     { imageUrl: "/avatars/creator-2.png", profileUrl: "#" },
@@ -11,15 +34,18 @@ export function WaitlistProof() {
     { imageUrl: "/avatars/creator-5.png", profileUrl: "#" },
   ]
 
+  // Dynamic remaining count for AvatarCircles (total count minus the 5 visible avatars)
+  const numPeople = Math.max(0, count - avatarUrls.length)
+
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
       {/* Overlapping Avatar Stack using AvatarCircles */}
-      <AvatarCircles avatarUrls={avatarUrls} numPeople={382} className="rtl:space-x-reverse" />
+      <AvatarCircles avatarUrls={avatarUrls} numPeople={numPeople} className="rtl:space-x-reverse" />
 
       {/* Waitlist Copy */}
       <div className="flex flex-col text-center sm:text-left">
         <span className="text-[15px] font-semibold text-foreground tracking-tight">
-          387 creators are already on the waitlist
+          {count} creators are already on the waitlist
         </span>
         <span className="text-[13px] text-muted-foreground font-sans mt-0.5">
           Be the first to create.{" "}
