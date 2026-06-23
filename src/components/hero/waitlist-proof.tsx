@@ -6,17 +6,19 @@ import { Highlighter } from "@/components/ui/highlighter"
 import { supabase } from "@/lib/supabase"
 
 export function WaitlistProof() {
-  const [count, setCount] = React.useState(200) // baseline starts at 200
+  const [count, setCount] = React.useState(200) 
 
   React.useEffect(() => {
     async function fetchWaitlistCount() {
       try {
-        const { count: dbCount, error } = await supabase
-          .from("waitlist_users")
-          .select("*", { count: "exact", head: true })
+        // Call a secure RPC function to get the count.
+        // This prevents exposing waitlist emails via client-side SELECT RLS policies.
+        const { data: dbCount, error } = await supabase.rpc("get_waitlist_count")
 
         if (!error && dbCount !== null) {
-          setCount(200 + dbCount)
+          setCount(200 + Number(dbCount))
+        } else if (error) {
+          console.log("Supabase RPC error (falling back to default):", error.message)
         }
       } catch (err) {
         console.error("Error fetching waitlist count:", err)

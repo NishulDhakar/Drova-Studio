@@ -3,7 +3,7 @@ import { FlickeringGrid } from "@/components/ui/flickering-grid"
 
 export default function Page() {
   return (
-    <main className="flex-grow w-full min-h-screen flex items-center justify-center relative overflow-hidden bg-background py-12 px-4 sm:p-8">
+    <main className="flex-grow w-full min-h-screen flex justify-center relative overflow-hidden bg-background py-12 px-4 sm:p-8">
       {/* Flickering Grid Background */}
       {/* <FlickeringGrid
         className="absolute inset-0 z-0 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,white_30%,transparent_90%)] dark:[mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_90%)]"

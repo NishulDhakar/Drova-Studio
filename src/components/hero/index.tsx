@@ -3,6 +3,7 @@ import { LaunchingBadge } from "./badge"
 import { EmailForm } from "./email-form"
 import { Features } from "./features"
 import { WaitlistProof } from "./waitlist-proof"
+import { SocialLinks } from "./social-links"
 
 export function Hero() {
   return (
@@ -32,6 +33,9 @@ export function Hero() {
 
       {/* 5. Waitlist / Social Proof */}
       <WaitlistProof />
+
+      {/* 6. Social Links */}
+      <SocialLinks />
     </section>
   )
 }
