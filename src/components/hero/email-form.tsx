@@ -41,6 +41,18 @@ export function EmailForm() {
           type: "success",
           message: "Welcome to Drova Studio! You have joined the waitlist",
         })
+        
+        // Send a beautiful welcome email via our Nodemailer API in the background
+        fetch("/api/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }).catch((err) => {
+          console.error("Failed to send welcome email:", err)
+        })
+
         setEmail("")
       }
     } catch (err) {
